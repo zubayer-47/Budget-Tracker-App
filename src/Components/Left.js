@@ -1,4 +1,3 @@
-
 export default function Left(props) {
    // console.log(props);
    let count = 0;
@@ -11,7 +10,6 @@ export default function Left(props) {
       if (expense && expenseName) {
          const res = x - Number(expense)
          count = res;
-         console.log(res);
       }
    }
    return (
