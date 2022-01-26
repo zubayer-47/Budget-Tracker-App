@@ -2,14 +2,11 @@ import React, { useContext } from "react";
 import { Context } from "./Context/Context";
 
 export default function History() {
-  const { state, dispatch } = useContext(Context);
+  const { state, removeBudget } = useContext(Context);
 
   const onDoubleClick = (e) => {
     e.preventDefault();
-    dispatch({
-      type: "DELETE_BUDGET",
-      payload: e.target.closest("tr").id,
-    });
+    removeBudget(e.target.closest("tr").id);
 
     setTimeout(() => {
       e.target.closest("tr").remove();

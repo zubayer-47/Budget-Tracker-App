@@ -2,6 +2,7 @@ import React from "react";
 import useCalculations from "./hooks/useCalculations";
 
 export default function Balance() {
+  // eslint-disable-next-line no-unused-vars
   const [income, expense, leftAmount] = useCalculations();
   return (
     <div className="text-center">
