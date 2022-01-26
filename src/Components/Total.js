@@ -6,7 +6,7 @@ export default function Total() {
   const [income, expense] = useCalculations();
 
   return (
-    <div className="mx-5 max-w-lg md:mx-auto px-3 pb-2 my-10 border-t shadow-md border-green-100 rounded-sm bg-green-50">
+    <div className="mx-5 max-w-lg md:mx-auto px-3 pb-2 my-10 border-t shadow-md border-green-100 rounded-sm bg-green-50  select-none">
       <div className="flex justify-around text-center py-2 border-b ">
         <article>
           <p className="font-bold uppercase font-mono">Income: </p>

@@ -6,7 +6,7 @@ export default function Budget(props) {
   const [amount, setAmount] = useState(0);
   const [budgetName, setBudgetName] = useState("");
   const [budgetType, setBudgetType] = useState("income");
-  const [isIncome, setIsIncome] = useState(false);
+  const [isFill , setIsFill] = useState(false);
   const { addIncome } = useContext(Context);
 
   const onSubmit = (e) => {
@@ -23,8 +23,10 @@ export default function Budget(props) {
       setAmount(0);
       setBudgetType("income");
       setBudgetName("");
+
+      setIsFill(false)
     } else {
-      setIsIncome(true);
+      setIsFill(true);
     }
   };
 
@@ -38,7 +40,7 @@ export default function Budget(props) {
           </label>
           <input
             className={`outline-none border ${
-              isIncome ? "border-red-400" : "border-blue-100"
+              isFill ? "border-red-400" : "border-blue-100"
             } block my-1 p-1 rounded-sm w-full`}
             type="text"
             id="incomeType"
@@ -55,7 +57,7 @@ export default function Budget(props) {
           </label>
           <input
             className={`outline-none border ${
-              isIncome ? "border-red-400" : "border-blue-100"
+              isFill ? "border-red-400" : "border-blue-100"
             } block my-1 p-1 rounded-sm w-full`}
             type="number"
             id="income"
@@ -71,10 +73,8 @@ export default function Budget(props) {
             Budget Type
           </label>
           <select
-            name="budgetType"
-            id="type"
             className={`outline-none border ${
-              isIncome ? "border-red-400" : "border-blue-100"
+              isFill ? "border-red-400" : "border-blue-100"
             } block my-1 p-1 rounded-sm w-full bg-gray-50`}
             value={budgetType}
             onChange={(e) => setBudgetType(e.target.value)}

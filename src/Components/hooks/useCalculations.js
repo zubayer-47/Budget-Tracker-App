@@ -4,19 +4,13 @@ import { Context } from "../Context/Context";
 export default function useCalculations() {
   const { state } = useContext(Context);
 
-  let incomeList = [];
-  let expenseList = [];
   let expense = 0;
   let income = 0;
 
   state.transactions.forEach((v) => {
     if (v.budgetType === "income") {
-      incomeList.push(v);
-
       income += v.amount;
     } else {
-      expenseList.push(v);
-
       expense += v.amount;
     }
   });

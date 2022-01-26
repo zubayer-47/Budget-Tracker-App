@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import { Context } from "./Context/Context";
 
 const initialState = {
-  transactions: [{id: '1asdasdsa', amount: 200, budgetType: 'income', budgetName: 'school'}, {id: 'asdasdsa', amount: 202,budgetName: 'school', budgetType: 'expense'},{id: 2, amount: 20,budgetName: 'school', budgetType: 'income'}],
+  transactions: JSON.parse(localStorage.getItem("Budget")).transactions,
 };
 
 const reducer = (state, action) => {
@@ -26,6 +26,8 @@ const reducer = (state, action) => {
 
 export default function Provider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  localStorage.setItem("Budget", JSON.stringify(state));
 
   const deleteExpense = (id) => {
     dispatch({
@@ -55,10 +57,16 @@ export default function Provider({ children }) {
     });
   };
 
-  console.log(state);
   return (
     <Context.Provider
-      value={{ state, dispatch, deleteExpense, deleteIncome, addExpense, addIncome }}
+      value={{
+        state,
+        dispatch,
+        deleteExpense,
+        deleteIncome,
+        addExpense,
+        addIncome,
+      }}
     >
       {children}
     </Context.Provider>

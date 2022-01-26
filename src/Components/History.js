@@ -52,7 +52,7 @@ export default function History() {
   };
 
   return (
-    <div className="my-10 mx-5 md:max-w-lg md:mx-auto p-5 shadow-md bg-gray-50">
+    <div className="my-10 mx-5 md:max-w-lg md:mx-auto p-5 shadow-md bg-gray-50  select-none">
       <h1 className="text-lg uppercase font-mono border-b">History</h1>
       <div className="border p-1 bg-white w-full">
         <table className="border-collapse w-full">
@@ -65,6 +65,11 @@ export default function History() {
           </thead>
           <tbody onDoubleClick={onDoubleClick}>{history()}</tbody>
         </table>
+        {!!state.transactions.length && (
+          <span className="text-xs text-gray-500">
+            double click to remove budget
+          </span>
+        )}
       </div>
     </div>
   );

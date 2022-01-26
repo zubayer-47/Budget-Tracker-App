@@ -10,7 +10,7 @@ export default function App() {
     <Provider>
       <Header />
       <Total />
-      <div className="my-10 mx-5 max-w-lg md:mx-auto p-5 shadow-md bg-gray-50">
+      <div className="my-10 mx-5 max-w-lg md:mx-auto p-5 shadow-md bg-gray-50  select-none">
         <Budget />
       </div>
       <History />
