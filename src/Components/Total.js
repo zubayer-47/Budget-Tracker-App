@@ -1,16 +1,26 @@
-import React, { Component } from 'react';
-import Left from './Left';
+import React from "react";
+import Balance from "./Balance";
+import useCalculations from "./hooks/useCalculations";
 
-export default class Total extends Component {
+export default function Total() {
+  const [income, expense] = useCalculations();
 
-   render() {
-      const {amount, expense} = this.props;
-      return (
-         <div className='my-3'>
-            <h1 className='text-xl my-2 px-2'>Total Income: {(amount.amount && amount.other) ? +amount.amount + +amount.other: amount.amount}</h1>
-            <h1 className='text-xl my-2 px-2'>Total Expense: {expense.expense}</h1>
-            <Left {...this.props} />
-         </div>
-      )
-   }
+  return (
+    <div className="mx-5 max-w-lg md:mx-auto px-3 pb-2 my-10 border-t shadow-md border-green-100 rounded-sm bg-green-50">
+      <div className="flex justify-around text-center py-2 border-b ">
+        <article>
+          <p className="font-bold uppercase font-mono">Income: </p>
+          <span className="uppercase font-mono text-green-400">{income}</span>
+        </article>
+
+        <span className="border-r border-green-200"></span>
+        <article className="">
+          <p className="font-bold uppercase font-mono">Expense: </p>
+          <span className="uppercase font-mono text-red-400">{expense}</span>
+        </article>
+      </div>
+
+      <Balance />
+    </div>
+  );
 }
