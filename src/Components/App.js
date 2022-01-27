@@ -6,6 +6,7 @@ import Provider from "./Provider";
 import Total from "./Total";
 
 export default function App() {
+  
   return (
     <Provider>
       <Header />

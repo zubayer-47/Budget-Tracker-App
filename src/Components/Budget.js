@@ -6,25 +6,26 @@ export default function Budget(props) {
   const [amount, setAmount] = useState(0);
   const [budgetName, setBudgetName] = useState("");
   const [budgetType, setBudgetType] = useState("income");
-  const [isFill , setIsFill] = useState(false);
+  const [isFill, setIsFill] = useState(false);
   const { addBudget } = useContext(Context);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (amount && budgetType.length && budgetName.length) {
-      addBudget({
+      const budgetObj = {
         id: `${v4()}`,
         amount: +amount,
         budgetName,
         budgetType,
-      });
-      
+      };
+      addBudget(budgetObj);
+
       setAmount(0);
       setBudgetType("income");
       setBudgetName("");
 
-      setIsFill(false)
+      setIsFill(false);
     } else {
       setIsFill(true);
     }

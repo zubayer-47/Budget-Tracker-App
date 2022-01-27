@@ -1,39 +1,37 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { Context } from "./Context/Context";
 
 const initialState = {
-  transactions: JSON.parse(localStorage.getItem('Budget')).transactions,
+  transactions: JSON.parse(localStorage.getItem("Budget")) || [],
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "BUDGET": {
-
-      const data = JSON.parse(localStorage.getItem("Budget")).transactions || [];
-      const stringObject = JSON.stringify({...action.payload});
-
-      localStorage.setItem("Budget", [stringObject, ...data]);
-
       return {
         ...state,
         transactions: [action.payload, ...state.transactions],
       };
     }
-    case "DELETE_BUDGET":
+    case "DELETE_BUDGET": {
       return {
         ...state,
         transactions: state.transactions.filter(
           (transaction) => transaction.id !== action.payload
-          ),
-        };
-        default:
-          return state;
-        }
+        ),
       };
-      
-      export default function Provider({ children }) {
-        const [state, dispatch] = useReducer(reducer, initialState);
-        localStorage.setItem("Budget", JSON.stringify(state));
+    }
+    default:
+      return state;
+  }
+};
+
+export default function Provider({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem("Budget", JSON.stringify(state.transactions));
+  }, [state.transactions]);
 
   const addBudget = (payload) => {
     dispatch({
@@ -42,12 +40,12 @@ const reducer = (state, action) => {
     });
   };
 
-  const removeBudget = id => {
+  const removeBudget = (id) => {
     dispatch({
       type: "DELETE_BUDGET",
-      payload: id
-    })
-  }
+      payload: id,
+    });
+  };
 
   return (
     <Context.Provider
@@ -55,7 +53,7 @@ const reducer = (state, action) => {
         state,
         dispatch,
         addBudget,
-        removeBudget
+        removeBudget,
       }}
     >
       {children}
